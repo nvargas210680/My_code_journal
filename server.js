@@ -1,13 +1,13 @@
-import express from "express"
-import mongoose from "mongoose"
-import dotenv from "dotenv"
-import UserRoute from "./routes/User"
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import userRouter from "./routes/userRoute.js";
 
-dotenv.config()
 
+dotenv.config();
 
 await mongoose.connect(process.env.MONGO_URL);
-console.log("connected to mongodb;")
+console.log("connected to mongodb;");
 
 // db.on("error", (err)=>{
 //     console.log(err)
@@ -17,15 +17,14 @@ console.log("connected to mongodb;")
 //     console.log("Database Conection Esablished!")
 // })
 
-const app = express()
+const app = express();
 const PORT = 5000;
 app.use(express.json());
 
-// process.env.PORT || 
+// process.env.PORT ||
 
-
-app.listen(PORT, (req, res)=>{
-    console.log(`listening on port ${PORT}`);
+app.listen(PORT, (req, res) => {
+  console.log(`listening on port ${PORT}`);
 });
 
-app.use("/api/user", UserRoute)
+app.use("/api/user", userRouter);
